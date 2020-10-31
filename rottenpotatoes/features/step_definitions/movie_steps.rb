@@ -18,7 +18,7 @@ end
 Then /I should see "(.*)" before "(.*)"/ do |e1, e2|
   #  ensure that that e1 occurs before e2.
   #  page.body is the entire content of the page as a string.
-  expect(page.body).to match(/[\s\S]*#{e1}[\s\S]*#{e2}/)
+  expect(page.body).to match(/[\w\W]*#{e1}[\w\W]*#{e2}[\w\W]*/)
 end
 
 # Make it easier to express checking or unchecking several boxes at once
@@ -52,5 +52,5 @@ end
 
 Then /I should see all the movies/ do
   # Make sure that all the movies in the app are visible in the table
-  expect(page).to have_xpath("//tr", count: 11)
+  expect(page).to have_xpath("//tr", count: Movie.count+1)
 end
